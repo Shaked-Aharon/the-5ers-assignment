@@ -1,0 +1,26 @@
+{
+  "name": "the-5ers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/the-5ers/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "the-5ers:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "the-5ers:build:development"
+        },
+        "production": {
+          "buildTarget": "the-5ers:build:production"
+        }
+      }
+    }
+  }
+}
