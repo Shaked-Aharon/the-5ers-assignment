@@ -3,10 +3,10 @@ import { Navigate } from 'react-router-dom';
 import { Constant } from '../constant';
 
 interface AuthGuardProps {
-  children: React.ReactNode;
+  element: React.ReactElement;
 }
 
-const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
+const AuthGuard: React.FC<AuthGuardProps> = ({ element }) => {
   // Check if token is stored in localStorage
   const token = localStorage.getItem(Constant.localStorageKeys.Token);
 
@@ -16,7 +16,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
   }
 
   // If token exists, render the children components
-  return <>{children}</>;
+  return <>{element}</>;
 };
 
 export default AuthGuard;

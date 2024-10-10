@@ -1,4 +1,4 @@
-# Assignment - Stock Tracker Application
+# Shaked Aharon Assignment - Stock Tracker Application
 
 ## Overview
 This is a full-stack application that allows users to explore and track stock information. Users can browse a list of stocks, save their favorite stocks for easy access, and view detailed information about each stock. The application is built using React for the frontend and NestJS for the backend, integrated with a database to manage stock data and user preferences.
@@ -17,6 +17,7 @@ This is a full-stack application that allows users to explore and track stock in
 
 ### Prerequisites
 Make sure you have the following installed:
+- **MongoDB**
 - **Node.js**: Version 14 or later
 - **npm**: Version 6 or later
 

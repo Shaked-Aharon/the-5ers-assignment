@@ -4,10 +4,8 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
     StarOutlined,
-    UploadOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Button, Layout, Menu, Typography, theme } from 'antd';
+import { Button, Layout, Menu, Spin, Typography, theme } from 'antd';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useStore } from '../stores/store.provider';
@@ -25,12 +23,17 @@ function RootLayout({ children }: React.PropsWithChildren) {
     } = theme.useToken();
 
     if (authStore.loading) {
-        return <div>Loading...</div>;
+        return <Spin fullscreen={true} tip="Loading" size="large" />;
     }
+
+    // const isSidebarShouldBeSeen = useMemo(() => {
+    //     if(window.innerWidth > 580) return authStore.isAuthenticated;
+    //     return !collapsed
+    // }, [authStore.isAuthenticated, collapsed])
+    
     return (
         <Layout className='h-full'>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div className="demo-logo-vertical" />
+            <Sider trigger={null} collapsible collapsed={collapsed} className={authStore.isAuthenticated ? '' : 'hidden'}>
                 <Menu
                     theme="dark"
                     mode="inline"
@@ -48,11 +51,6 @@ function RootLayout({ children }: React.PropsWithChildren) {
                             label: 'Favorite Stocks',
                             onClick: () => navigate('/favorite')
                         },
-                        // {
-                        //     key: '3',
-                        //     icon: <UploadOutlined />,
-                        //     label: 'nav 3',
-                        // },
                         {
                             style: {
                                 position: 'absolute',
@@ -70,7 +68,7 @@ function RootLayout({ children }: React.PropsWithChildren) {
                 />
             </Sider>
             <Layout>
-                <Header style={{ padding: 0, background: colorBgContainer }}>
+                <Header style={{ padding: 0, background: colorBgContainer }} className={authStore.isAuthenticated ? '' : 'hidden'}>
                     <Button
                         type="text"
                         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -81,7 +79,7 @@ function RootLayout({ children }: React.PropsWithChildren) {
                             height: 64,
                         }}
                     />
-                    <Title level={3} className='inline'>Hey {authStore.user?.name}, your stock portfolio</Title>
+                    <Title level={3} className='inline'>Hey {authStore.user?.name} <span className='hidden md:inline'>| Stock Portfolio</span></Title>
                 </Header>
                 <Content
                     style={{

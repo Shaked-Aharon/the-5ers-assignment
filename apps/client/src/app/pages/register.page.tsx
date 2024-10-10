@@ -10,7 +10,6 @@ const RegisterPage: React.FC = () => {
     const [err, setErr] = useState('');
     const onFinish = (values: any) => {
         setErr('');
-        console.log('Success:', values);
         register({ ...values, confirmPassword: undefined }).then(result => {
             if ('error' in result) {
                 setErr(result.message);

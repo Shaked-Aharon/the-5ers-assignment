@@ -12,7 +12,6 @@ const LoginPage: React.FC = () => {
     const {authStore, financialsStore} = useStore();
     const [err, setErr] = useState('');
     const onFinish = (values: any) => {
-        console.log('Success:', values);
         setErr('');
         login({ ...values, confirmPassword: undefined }).then(result => {
             if ('error' in result) {
